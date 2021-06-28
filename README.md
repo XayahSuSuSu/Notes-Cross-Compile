@@ -1,6 +1,6 @@
 # 交叉编译 笔记
 
-> Android NDK 版本：r22b (22.1.7171670)
+> Android NDK 版本：r22b (22.1.7171670) **--已上传 Releases**
 >
 > 目标平台：AArch64
 
