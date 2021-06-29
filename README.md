@@ -99,3 +99,43 @@
    注：其中的 **AR** 、 **CC** 、 **AS** 、 **CXX** 、 **LD** 、 **RANLIB** 、 **STRIP** 等决定于Makefile，我这里图方便就直接复制了 [NDK文档](https://developer.android.google.cn/ndk/guides/other_build_systems#autoconf) 中的变量，恰好已经覆盖完全，不会报错。当交叉编译报错时，请自行添加相应变量。
 
 3. 编译产物生成于当前文件夹中
+
+## **非 Autoconf Makefile** 交叉编译 (以 [Dtc](https://github.com/dgibson/dtc) 为例)
+
+1. 克隆 **dtc**
+   ```
+   git clone https://github.com/dgibson/dtc
+   ```
+
+2. 交叉编译
+   ```
+   cd dtc
+
+   export NDK=/home/xayah/Compile/NDK                              # NDK根目录绝对路径
+
+   export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64     # 交叉编译链路径
+
+   export TARGET=aarch64-linux-android                             # 交叉编译目标
+
+   export API=24                                                   # 最小目标SDK版本配置(24 即为 Android 7.0)
+
+   export AR=$TOOLCHAIN/bin/llvm-ar
+
+   export CC=$TOOLCHAIN/bin/$TARGET$API-clang
+
+   export AS=$CC
+
+   export CXX=$TOOLCHAIN/bin/$TARGET$API-clang++
+
+   export LD=$TOOLCHAIN/bin/ld
+
+   export RANLIB=$TOOLCHAIN/bin/llvm-ranlib
+
+   export STRIP=$TOOLCHAIN/bin/llvm-strip
+
+   make
+   ```
+
+   注：其中的 **AR** 、 **CC** 、 **AS** 、 **CXX** 、 **LD** 、 **RANLIB** 、 **STRIP** 等决定于Makefile，我这里图方便就直接复制了 [NDK文档](https://developer.android.google.cn/ndk/guides/other_build_systems#autoconf) 中的变量，恰好已经覆盖完全，不会报错。当交叉编译报错时，请自行添加相应变量。
+
+3. 编译产物生成于当前文件夹中
