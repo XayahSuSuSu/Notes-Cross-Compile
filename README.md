@@ -133,7 +133,15 @@
 
    export STRIP=$TOOLCHAIN/bin/llvm-strip
 
-   make
+   make \
+      AR=$AR \
+      CC=$CC \
+      AS=$AS \
+      CXX=$CXX \
+      LD=$LD \
+      RANLIB=$RANLIB \
+      STRIP=$STRIP \
+      dtc
    ```
 
    注：其中的 **AR** 、 **CC** 、 **AS** 、 **CXX** 、 **LD** 、 **RANLIB** 、 **STRIP** 等决定于Makefile，我这里图方便就直接复制了 [NDK文档](https://developer.android.google.cn/ndk/guides/other_build_systems#autoconf) 中的变量，恰好已经覆盖完全，不会报错。当交叉编译报错时，请自行添加相应变量。
